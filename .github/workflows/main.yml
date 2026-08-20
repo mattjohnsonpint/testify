@@ -17,6 +17,7 @@ jobs:
           go-version: ${{ matrix.go_version }}
       - run: ./.ci.gogenerate.sh
       - run: ./.ci.gofmt.sh
+        if: matrix.go_version == 'stable'
       - run: ./.ci.govet.sh
       - run: go test -v -race ./...
 
@@ -33,6 +34,7 @@ jobs:
           - "1.22"
           - "1.23"
           - "1.24"
+          - "1.25"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Setup Go
